@@ -14,12 +14,10 @@ if($imageSize > $maxFileSize){
 }
 
 // Provera maksimalne rezolucije slike (1920x1024) /////////////////////////////////
-$imageDimensions = getimagesize($_FILES['profileImage']['tmp_name']);
-$maxWidth = 1920;
-$maxHeight = 1024;
+list($imageWidth, $imageHeight) = getimagesize($_FILES['profileImage']['tmp_name']);
 
-if($imageDimensions[0] > $maxWidth || $imageDimensions[1] > $maxHeight){
-    die("Slika je prevelike rezolucije! Maksimalna dozvoljena rezolucija slike je 1920x1024.");
+if($imageWidth > 1920 || $imageHeight > 1024){
+    die("Maksimalna dozvoljena rezolucija slike je 1920x1024.");
 }
 
 // Provera formata slike ///////////////////////////////////////////////////////////
