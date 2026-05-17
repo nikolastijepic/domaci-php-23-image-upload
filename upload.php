@@ -4,7 +4,7 @@ if(!isset($_FILES['profileImage'])){
     die('Niste prosledili profilnu sliku!');
 }
 
-// Provera velicine slike //////////////////////////////////////////////////////////
+/// Provera velicine slike ///
 $imageSize = $_FILES['profileImage']['size'];
 
 $maxFileSize = 2 * 1024 * 1024;
@@ -13,14 +13,14 @@ if($imageSize > $maxFileSize){
     die("Slika je prevelika! Maksimalna dozvoljena velicina je 2MB.");
 }
 
-// Provera maksimalne rezolucije slike (1920x1024) /////////////////////////////////
+/// Provera maksimalne rezolucije slike (1920x1024) ///
 list($imageWidth, $imageHeight) = getimagesize($_FILES['profileImage']['tmp_name']);
 
 if($imageWidth > 1920 || $imageHeight > 1024){
     die("Maksimalna dozvoljena rezolucija slike je 1920x1024.");
 }
 
-// Provera formata slike ///////////////////////////////////////////////////////////
+/// Provera formata slike ///
 $allowedExtensions = ['jpeg', 'jpg', 'png', 'gif'];
 
 $imageType = pathinfo($_FILES['profileImage']['name'], PATHINFO_EXTENSION);
@@ -29,7 +29,7 @@ if(!in_array($imageType, $allowedExtensions)){
     die("Format slike nije dobar, mora biti: ".implode(', ', $allowedExtensions));
 }
 
-// Generisanje imena slike /////////////////////////////////////////////////////////
+/// Generisanje imena slike ///
 $imageName = time().".".$imageType;
 
 $finalPath = "./uploads/$imageName";
